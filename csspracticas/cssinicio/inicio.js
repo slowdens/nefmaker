@@ -1,21 +1,24 @@
 
 
 $(document).ready(function(){
-  
+    tomarpaginas();
 });
 
 function tomarpaginas()
 {
     $.ajax({
-                           url:'AgregarUsuarioRol',
+                           url:'../csspracticas/Clases/Remo/remoto.php',                           
                            type:'post',
                            data :{
-                                nombre : 'inicio'                                
+                                opt : 'Inicio'                                
     
                            },
                            datatype:'json',
                            success:function(datos)
                            {
+                               //var obj = jQuery.parsJSON(datos);
+                               console.log(datos.res);
+                               
                                
                            }
     });
