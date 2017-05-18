@@ -16,8 +16,10 @@ function tomarpaginas()
                            datatype:'json',
                            success:function(datos)
                            {
-                               //var obj = jQuery.parsJSON(datos);
-                               console.log(datos.res);
+                               
+                               console.log(datos[0].Fruta);
+                               
+                         
                                
                                
                            }
