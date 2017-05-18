@@ -26,12 +26,34 @@ class Funciones {
            return $this->json;
 
        }
+       
+       public function InformacionGeneral(){
+           require_once '../Conexiones.php';           
+           /*Creamos la instancia del objeto. Ya estamos conectados*/
+           $bd=  Conexiones::getInstance();
+           
+           $sql='CALL sp_informacion;';
+           /*Ejecutamos la query*/
+           $stmt = $bd->ejecutar($sql);
+           $this-> rawdata = array(); //creamos un array
+           $i=0;
+           /*Realizamos un bucle para ir obteniendo los resultados*/
+           $jsons= "[";
+           while ($x=$bd->obtener_fila($stmt,0)){
+              $jsons .='{"Fruta": "'.$x[0].'" },';  //$x[0];
+
+                    $i++;
+           }
+           return $this->json;
+       }
+               
+       
        public function Tomarpaginas(){
            require_once '../Conexiones.php';           
            /*Creamos la instancia del objeto. Ya estamos conectados*/
            $bd=  Conexiones::getInstance();
            
-           $sql='CALL sp_verificar_permisos(\''.$usuario.'\',\''.$pantalla.'\');';
+           $sql='CALL sp_tomarpagina(\''.$usuario.'\');';
            /*Ejecutamos la query*/
            $stmt = $bd->ejecutar($sql);
            $this-> rawdata = array(); //creamos un array

@@ -9,8 +9,8 @@ switch ($opcion)
     case "Inicio":
             require_once '../Funciones/Funciones.php';  
             $funciones = new Funciones();
-            $res = $funciones->Tomainformacion();
-            echo $funciones->Tomainformacion();
+            $res = $funciones->InformacionGeneral();
+            echo $funciones->InformacionGeneral();
         break;
     case "TomaInfoInicial":
         break;
