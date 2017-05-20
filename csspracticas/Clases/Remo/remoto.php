@@ -9,10 +9,19 @@ switch ($opcion)
     case "Inicio":
             require_once '../Funciones/Funciones.php';  
             $funciones = new Funciones();
-            $res = $funciones->InformacionGeneral();
-            echo $funciones->InformacionGeneral();
+            $res = $funciones->InformacionGeneral();   
+           
+            echo $res;
         break;
     case "TomaInfoInicial":
+         $json= "[";
+//         $json .='{"Fruta": "Manzana" },';
+//         $json .='{"Fruta": "Platano" },';
+         $json .='{"Fruta": "Mango" }';
+         $json.="]";
+    
+    echo  $json;
+    
         break;
 }
 /*

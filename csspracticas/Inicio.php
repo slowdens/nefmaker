@@ -8,14 +8,8 @@
         <title>Default</title>
     </head> 
     <body>       
-        <div class="contenedor">
-            <div class="subcontenido">
-                SOMBRAS
-            </div>
-             <div class="subcontenido">
-                SOMBRAS
-            </div> 
-            
+        <div class="contenedor" id="contenedor" >
+                   
             
         </div>
     </body>

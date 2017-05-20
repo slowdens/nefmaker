@@ -11,6 +11,9 @@
  *
  * @author nef
  */
+
+
+
 class Funciones {
     //put your code here
      private $json;
@@ -41,24 +44,27 @@ class Funciones {
         }
         if ($resultado = $mysqli->query($sql, MYSQLI_USE_RESULT)) {                
             $i=0;
+            $sjons="[";
             while($obj = $resultado->fetch_object()){
-                  $datos[$i] =array('Pantalla'=>$obj->Pantalla,'Link'=>$obj->Link,'Icono'=>$obj->icono) ;
-                  $id=$obj->id;                
-                  
-                  
-                  $Titulo = $obj->Titulo;
-                  $DescripcionHtml = $obj->DescripcionHtml;
+                  //$datos[$i] =array('Pantalla'=>$obj->Pantalla,'Link'=>$obj->Link,'Icono'=>$obj->icono) ;
+//                  $id=$obj->Id;
+//                  $Titulo = $obj->Titulo;
+//                  $DescripcionHtml = $obj->DescripcionHtml;
+//                  $html = str_replace("\"","¬",$obj->Html);
+//                  $link = $obj->Link;
+//                  $css = $obj->Css;                  
+//                  $sjons .='{\"Id\":\"".$id."\",\"Titulo\":\"".$Titulo."\",\"DescripcionHtml\":\"".$DescripcionHtml."\",\"Link\":\"".$link."\",\"Css\":\"".$css."\"}';
+//                  
+                 $pantallas[]= array('Id'=>$obj->Id,'Titulo'=>$obj->Titulo);
                   $i++;
                     
             } 
-                /* Observar que no se puede ejecutar ninguna función que interactue con el
-                   servidor hasta que el conjunto de resultados se haya cerrado. Todas las llamadas devolverán un
-                   error 'out of sync' */
-                
+                                        
             $resultado->close();
-        }
+        }   
         $mysqli->close();
-        return $datos;
+        $sjons = json_encode($pantallas);
+        return $sjons;
        }
                
        
