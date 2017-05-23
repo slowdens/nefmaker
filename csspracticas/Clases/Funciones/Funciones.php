@@ -86,5 +86,34 @@ class Funciones {
            }
            return $this->json;
        }
+       
+       
+    public function AgregarPaginas($titulo,$body,$leyendaHtml,$Leyendacss,$CssMostrar,$ubicacion){
+        require_once '../ConServidor.php';
+        $base = new ConServidor();        
+        $datos = array();
+        //$sql='CALL sp_agregarpaginas('.$titulo.','.$body.','.$leyendaHtml.','.$Leyendacss.','.$CssMostrar.','.$ubicacion.');';        
+        $sql = "CALL sp_AgregarPaginas(\'$titulo\',\'$body\',\'$leyendaHtml\',\'$Leyendacss',\'$CssMostrar\',\'$ubicacion\');";
+        $sql = str_replace("\'","'",$sql);
+        $mysqli = new mysqli($base->getServidor(),$base->getUsuario(), $base->getPassword(), $base->getBasedeDatos());
+        /* comprobar la conexión */
+        if ($mysqli->connect_errno) {
+            printf("Falló la conexión: %s\n", $mysqli->connect_error);
+            exit();
+                        /* Si se ha de recuperar una gran cantidad de datos se emplea MYSQLI_USE_RESULT */
+        }
+        if ($resultado = $mysqli->query($sql, MYSQLI_USE_RESULT)) {                
+            $i=0;
+            $sjons="[";
+            while($obj = $resultado->fetch_object()){                  
+                 $pantallas[]= array('Id'=>$obj->Id,'Titulo'=>$obj->Titulo);
+                  $i++;                    
+            }                                         
+            $resultado->close();
+        }   
+        $mysqli->close();
+        $sjons = json_encode($pantallas);
+        return $sjons;
+    }
                
 }

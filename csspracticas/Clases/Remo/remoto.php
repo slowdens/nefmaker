@@ -23,6 +23,21 @@ switch ($opcion)
     echo  $json;
     
         break;
+    case "AgregarPaginas":
+        $titulo = $_POST["titulo"];
+        $body= $_POST["body"];
+        $leyendaHtml= $_POST["leyendaHtml"];
+        $Leyendacss= $_POST["Leyendacss"];
+        $CssMostrar= $_POST["CssMostrar"];
+        $ubicacion=$_POST["ubicacion"];
+        
+        require_once '../Funciones/Funciones.php';  
+        $funciones = new Funciones();
+        $res = $funciones->AgregarPaginas($titulo,$body,$leyendaHtml,$Leyendacss,$CssMostrar,$CssMostrar,$ubicacion);
+        
+        
+        
+        break;
 }
 /*
 if($opcion="Ejemplo")
