@@ -30,10 +30,11 @@ switch ($opcion)
         $Leyendacss= $_POST["Leyendacss"];
         $CssMostrar= $_POST["CssMostrar"];
         $ubicacion=$_POST["ubicacion"];
+        $link=$_POST["Link"];
         
         require_once '../Funciones/Funciones.php';  
         $funciones = new Funciones();
-        $res = $funciones->AgregarPaginas($titulo,$body,$leyendaHtml,$Leyendacss,$CssMostrar,$CssMostrar,$ubicacion);
+        $res = $funciones->AgregarPaginas($titulo,$body,$leyendaHtml,$Leyendacss,$CssMostrar,$CssMostrar,$ubicacion,$link);
         
         
         

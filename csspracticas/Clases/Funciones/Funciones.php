@@ -55,7 +55,7 @@ class Funciones {
 //                  $css = $obj->Css;                  
 //                  $sjons .='{\"Id\":\"".$id."\",\"Titulo\":\"".$Titulo."\",\"DescripcionHtml\":\"".$DescripcionHtml."\",\"Link\":\"".$link."\",\"Css\":\"".$css."\"}';
 //                  
-                 $pantallas[]= array('Id'=>$obj->Id,'Titulo'=>$obj->Titulo);
+                 $pantallas[]= array('Id'=>$obj->Id,'Titulo'=>$obj->Titulo,'Link'=>$obj->Link);
                   $i++;
                     
             } 
@@ -88,12 +88,11 @@ class Funciones {
        }
        
        
-    public function AgregarPaginas($titulo,$body,$leyendaHtml,$Leyendacss,$CssMostrar,$ubicacion){
+    public function AgregarPaginas($titulo,$body,$leyendaHtml,$Leyendacss,$CssMostrar,$ubicacion,$link){
         require_once '../ConServidor.php';
         $base = new ConServidor();        
-        $datos = array();
-        //$sql='CALL sp_agregarpaginas('.$titulo.','.$body.','.$leyendaHtml.','.$Leyendacss.','.$CssMostrar.','.$ubicacion.');';        
-        $sql = "CALL sp_AgregarPaginas(\'$titulo\',\'$body\',\'$leyendaHtml\',\'$Leyendacss',\'$CssMostrar\',\'$ubicacion\');";
+        $datos = array();        
+        $sql = "CALL sp_AgregarPaginas(\'$titulo\',\'$body\',\'$leyendaHtml\',\'$Leyendacss',\'$CssMostrar\',\'$ubicacion\',\'$link\');";
         $sql = str_replace("\'","'",$sql);
         $mysqli = new mysqli($base->getServidor(),$base->getUsuario(), $base->getPassword(), $base->getBasedeDatos());
         /* comprobar la conexión */
@@ -106,7 +105,7 @@ class Funciones {
             $i=0;
             $sjons="[";
             while($obj = $resultado->fetch_object()){                  
-                 $pantallas[]= array('Id'=>$obj->Id,'Titulo'=>$obj->Titulo);
+                 $pantallas[]= array('Mensaje'=>$obj->Mensaje);
                   $i++;                    
             }                                         
             $resultado->close();

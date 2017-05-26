@@ -26,7 +26,7 @@ function tomarpaginas()
                                for(var i = 0; i<=datos.length-1;i++){
                                    
                                    strDatos +="<div class='subcontenido'>";
-                                   strDatos += ""+datos[i].Titulo+"";
+                                   strDatos += "<a href=\""+datos[i].Link+"\">"+datos[i].Titulo+"</a>";
                                    strDatos+="</div>";                                       
                                }
                                $("#contenedor").html(strDatos);

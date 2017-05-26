@@ -4,9 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/opt/lampp/htdocs/dashboard/nefmaker/csspracticas/Inicio.php</file>
+            <file>file:/opt/lampp/htdocs/dashboard/nefmaker/csspracticas/css/Agregar.js</file>
             <file>file:/opt/lampp/htdocs/dashboard/nefmaker/csspracticas/Clases/Funciones/Funciones.php</file>
-            <file>file:/opt/lampp/htdocs/dashboard/nefmaker/csspracticas/Clases/Conexiones.php</file>
             <file>file:/opt/lampp/htdocs/dashboard/nefmaker/csspracticas/Clases/ConServidor.php</file>
+            <file>file:/opt/lampp/htdocs/dashboard/nefmaker/csspracticas/agregar.php</file>
             <file>file:/opt/lampp/htdocs/dashboard/nefmaker/csspracticas/Clases/Remo/remoto.php</file>
         </group>
     </open-files>

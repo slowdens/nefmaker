@@ -14,6 +14,8 @@ function agregar()
     var Leyendacss = $("#txtLeyendacss").val();
     var CssMostrar = $("#txtCssMostrar").val();
     var ubicacion = $("#txtubicacion").val();
+    var link = $("#txtlink").val();
+    
 //    console.log(titulo);
 //    console.log(body);
 //    console.log(leyendaHtml);
@@ -33,15 +35,21 @@ function agregar()
                                 leyendaHtml:leyendaHtml,
                                 Leyendacss:Leyendacss,
                                 CssMostrar:CssMostrar,
-                                ubicacion:ubicacion
-                                
+                                ubicacion:ubicacion,
+                                Link:link
                                 
     
                            },
                            datatype:'json',
                            success:function(datos)
                            {
-                               
+                                if(datos[0].Mensaje == 'Ok'){
+                                    alert("La información se agrego correctamente");
+                                }
+                                else
+                                {
+                                    alert("Tristemente no se agrego la información");
+                                }
                            }
     });
     
