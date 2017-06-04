@@ -39,6 +39,12 @@ switch ($opcion)
         
         
         break;
+    case "LlenarGridAgregar":
+        require_once '../Funciones/Funciones.php';  
+        $funciones = new Funciones();
+        $res =$funciones->llenargridAgregar();
+        echo $res; 
+        break;
 }
 /*
 if($opcion="Ejemplo")

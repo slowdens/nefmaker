@@ -1,8 +1,47 @@
 $(document).ready(function(){
    $("#btnAgregar").click(function(){
-        agregar();
+        //agregar();
+       $('#agregarda').modal('show');
+        
    });
+   
+   llenagrid();
+         //$("#modalAgregar").modal() ;
 });
+
+function llenagrid()
+{
+    var tablita;
+    $.ajax({
+                           url:'../csspracticas/Clases/Remo/remoto.php',
+                           type:'post',
+                           data :{
+                               opt:'LlenarGridAgregar'                               
+    
+                           },
+                           datatype:'json',
+                           success:function(dataSet)
+                           {
+                               console.log(dataSet);
+                               tablita = $('#example').DataTable( {
+                                                data: dataSet,
+                                                columns: [
+                                                    { title: "Id" },
+                                                    { title: "Body" },
+                                                    { title: "LleyendaHtml" },
+                                                    { title: "Leyendacss" },
+                                                    { title: "CssMostrar" },
+                                                    { title: "Ubicacion" },
+                                                    { title: "Link" },
+                                                    { title: "Titulo" }
+                                                    
+                                                    
+                                                ]
+                                                
+                                        });
+                           }
+    });
+}
 
 function agregar()
 {

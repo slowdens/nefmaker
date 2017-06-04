@@ -114,5 +114,41 @@ class Funciones {
         $sjons = json_encode($pantallas);
         return $sjons;
     }
+    public function llenargridAgregar(){
+        require_once '../ConServidor.php';
+        $base = new ConServidor();        
+        $datos = array();        
+        $sql = "CALL sp_llenarGridAgregar();";
+        $sql = str_replace("\'","'",$sql);
+        $mysqli = new mysqli($base->getServidor(),$base->getUsuario(), $base->getPassword(), $base->getBasedeDatos());
+        /* comprobar la conexión */
+        if ($mysqli->connect_errno) {
+            printf("Falló la conexión: %s\n", $mysqli->connect_error);
+            exit();
+                        /* Si se ha de recuperar una gran cantidad de datos se emplea MYSQLI_USE_RESULT */
+        }
+        if ($resultado = $mysqli->query($sql, MYSQLI_USE_RESULT)) {                
+            $i=1;
+            $sjons="[";
+            while($obj = $resultado->fetch_object()){                  
+                 //$pantallas[]= array('Mensaje'=>$obj->Mensaje);
+                 if($i==$obj->Contador){
+                     $sjons.="[\"".$obj->Id."\", \"".$obj->Body."\",\"".$obj->LleyendaHtml."\",\"".$obj->Leyendacss."\",\"".$obj->CssMostrar."\",\"".$obj->Ubicacion."\",\"".$obj->Link."\",\"".$obj->Titulo."\"]";
+                 }
+                 else{
+                     $sjons.="[\"".$obj->Id."\",\"".$obj->Body."\",\"".$obj->LleyendaHtml."\",\"".$obj->Leyendacss."\",\"".$obj->CssMostrar."\",\"".$obj->Ubicacion."\",\"".$obj->Link."\",\"".$obj->Titulo."\"],";
+                 }
+                 
+                 
+                 
+                  $i++;                    
+            }
+            $sjons .="]"; 
+            $resultado->close();
+        }   
+        $mysqli->close();
+        //$sjons = json_encode($pantallas);
+        return $sjons;
+    }
                
 }
